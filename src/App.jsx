@@ -1,4 +1,4 @@
-import { useCallback, useState, useEffect , useRef } from "react";
+import { useCallback, useState, useEffect, useRef } from "react";
 // import "./App.css";
 
 function App() {
@@ -13,10 +13,10 @@ function App() {
     passwordRef.current?.select();
     // passwordRef.current.setSelectionRange(0, 3); // for range selection
     // window.navigator.clipboard.writeText(password.substring(0,4)); //for range selection
-    passwordRef.current.setSelectionRange(0, length); 
+    passwordRef.current.setSelectionRange(0, length);
     window.navigator.clipboard.writeText(password);
 
-  },[password])
+  }, [password])
 
   const passwordGenerator = useCallback(() => {
     let pass = "";
@@ -38,26 +38,27 @@ function App() {
 
   return (
     <>
-      <div className="text-white border  rounded-[12px] container mx-auto  mt-[10vh] max-w-xl text-center text-3xl py-4 bg-gray-600">
+    <div className="App px-5 md:px-0">
+      <div className="text-white border  rounded-[12px] container mx-auto  mt-[10vh]  max-w-md md:max-w-xl text-center text-3xl py-4 bg-gray-600">
         Password Generator
-        <div className=" flex gap-6 md:pl-9 pl-6  mt-2">
+        <div className="flex flex-col md:flex md:flex-row gap-6 px-9  mt-2">
           <input
             type="text"
             value={password}
             placeholder="password"
             readOnly
             ref={passwordRef}
-            className="text-lg  text-[16px] px-2 w-96 rounded text-black
+            className="text-lg  text-[16px] px-2 w-full rounded text-black
       "
           />
-          <button 
-          className="border rounded bg-green-800 text-base p-1"
-          onClick={copyToClipboard}
+          <button
+            className="border rounded bg-green-800 text-base p-1"
+            onClick={copyToClipboard}
           >
             Copy
           </button>
         </div>
-        <div className="flex mt-2  text-base gap-2 md:pl-9 pl-6">
+        <div className="flex  mt-2  text-base gap-2 px-9">
           <input
             type="range"
             min={6}
@@ -69,6 +70,8 @@ function App() {
             className="cursor-pointer"
           />
           <label>length: {length}</label>
+          </div>
+          <div className="flex  mt-2  text-base gap-2 px-9">
           <input
             type="checkbox"
             defaultChecked={numAllow}
@@ -77,6 +80,8 @@ function App() {
             }}
           />
           <label htmlFor="numberAllow">Number</label>
+          </div>
+          <div className="flex  mt-2  text-base gap-2 px-9">
           <input
             type="checkbox"
             defaultChecked={symAllow}
@@ -86,6 +91,7 @@ function App() {
           />
           <label htmlFor="symbolAllow">Symbols</label>
         </div>
+      </div>
       </div>
     </>
   );
